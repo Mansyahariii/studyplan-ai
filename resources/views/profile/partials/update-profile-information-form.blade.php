@@ -1,12 +1,12 @@
 <section>
     <header class="mb-6">
         <div class="flex items-start gap-3">
-            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700
-                        dark:bg-indigo-900/40 dark:text-indigo-300">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700 sm:h-11 sm:w-11
+                dark:bg-indigo-900/40 dark:text-indigo-300">
                 👤
             </div>
 
-            <div>
+            <div class="min-w-0 flex-1">
                 <h2 class="text-lg font-bold app-title">
                     Informasi Profil
                 </h2>

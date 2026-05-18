@@ -192,7 +192,7 @@
 
                             <span
                                 class="rounded-full bg-red-100 px-3 py-1 text-xs font-bold text-red-700 dark:bg-red-900/30 dark:text-red-300">
-                                Sangat Tinggi
+                                Sangat&nbsp;Tinggi
                             </span>
                         </div>
 

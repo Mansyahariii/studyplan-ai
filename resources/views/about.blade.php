@@ -5,7 +5,8 @@
             {{-- Hero --}}
             <div class="mb-6 app-hero p-8">
                 <div class="max-w-3xl">
-                    <p class="mb-3 inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-indigo-100 dark:text-indigo-200">
+                    <p
+                        class="mb-3 inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-indigo-100 dark:text-indigo-200">
                         StudyPlan AI
                     </p>
 
@@ -25,15 +26,16 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                 <div class="lg:col-span-2 rounded-3xl app-card p-6">
                     <div class="mb-5 flex items-start gap-3">
-                        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700
-                                    dark:bg-indigo-900/40 dark:text-indigo-300">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700 sm:h-11 sm:w-11
+                dark:bg-indigo-900/40 dark:text-indigo-300">
                             🎯
                         </div>
 
-                        <div>
-                            <h3 class="text-xl font-bold app-title">
+                        <div class="min-w-0 flex-1">
+                            <h3 class="text-base font-bold app-title sm:text-xl">
                                 Tujuan Sistem
                             </h3>
+
                             <p class="mt-1 text-sm app-subtitle">
                                 Sistem ini dibuat untuk membantu mahasiswa mengatur tugas secara lebih terstruktur.
                             </p>
@@ -46,7 +48,8 @@
                                 Membantu menentukan prioritas tugas
                             </h4>
                             <p class="mt-2 text-sm leading-6 app-text">
-                                Mahasiswa sering memiliki banyak tugas dengan deadline dan tingkat kesulitan yang berbeda.
+                                Mahasiswa sering memiliki banyak tugas dengan deadline dan tingkat kesulitan yang
+                                berbeda.
                                 Sistem ini membantu menentukan tugas mana yang perlu dikerjakan lebih dulu.
                             </p>
                         </div>
@@ -83,13 +86,15 @@
                             <div class="rounded-2xl bg-indigo-50 p-4 border border-indigo-100
                                         dark:bg-indigo-900/20 dark:border-indigo-900/50">
                                 <p class="text-sm font-semibold text-indigo-700 dark:text-indigo-300">Laravel</p>
-                                <p class="mt-1 text-xs text-indigo-600 dark:text-indigo-300/80">Framework utama sistem</p>
+                                <p class="mt-1 text-xs text-indigo-600 dark:text-indigo-300/80">Framework utama sistem
+                                </p>
                             </div>
 
                             <div class="rounded-2xl bg-purple-50 p-4 border border-purple-100
                                         dark:bg-purple-900/20 dark:border-purple-900/50">
                                 <p class="text-sm font-semibold text-purple-700 dark:text-purple-300">Gemini AI</p>
-                                <p class="mt-1 text-xs text-purple-600 dark:text-purple-300/80">Model rekomendasi berbasis AI</p>
+                                <p class="mt-1 text-xs text-purple-600 dark:text-purple-300/80">Model rekomendasi
+                                    berbasis AI</p>
                             </div>
 
                             <div class="rounded-2xl bg-blue-50 p-4 border border-blue-100
@@ -101,7 +106,8 @@
                             <div class="rounded-2xl bg-green-50 p-4 border border-green-100
                                         dark:bg-green-900/20 dark:border-green-900/50">
                                 <p class="text-sm font-semibold text-green-700 dark:text-green-300">Tailwind CSS</p>
-                                <p class="mt-1 text-xs text-green-600 dark:text-green-300/80">Tampilan UI/UX aplikasi</p>
+                                <p class="mt-1 text-xs text-green-600 dark:text-green-300/80">Tampilan UI/UX aplikasi
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -132,7 +138,8 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                     <div class="rounded-3xl app-card-soft p-5">
-                        <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 text-sm font-bold text-white">
+                        <div
+                            class="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 text-sm font-bold text-white">
                             1
                         </div>
 
@@ -146,7 +153,8 @@
                     </div>
 
                     <div class="rounded-3xl app-card-soft p-5">
-                        <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-600 text-sm font-bold text-white">
+                        <div
+                            class="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-600 text-sm font-bold text-white">
                             2
                         </div>
 
@@ -160,7 +168,8 @@
                     </div>
 
                     <div class="rounded-3xl app-card-soft p-5">
-                        <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-sm font-bold text-white">
+                        <div
+                            class="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-sm font-bold text-white">
                             3
                         </div>
 
@@ -174,7 +183,8 @@
                     </div>
 
                     <div class="rounded-3xl app-card-soft p-5">
-                        <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-green-600 text-sm font-bold text-white">
+                        <div
+                            class="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-green-600 text-sm font-bold text-white">
                             4
                         </div>
 
@@ -250,7 +260,8 @@
                         Fungsi AI dalam Sistem
                     </h3>
                     <p class="text-sm app-subtitle">
-                        AI digunakan sebagai fitur pendukung keputusan dan perencanaan, bukan untuk mengerjakan tugas mahasiswa.
+                        AI digunakan sebagai fitur pendukung keputusan dan perencanaan, bukan untuk mengerjakan tugas
+                        mahasiswa.
                     </p>
                 </div>
 

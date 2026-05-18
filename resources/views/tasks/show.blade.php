@@ -45,14 +45,14 @@
 
             @if(session('success'))
                 <div class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-sm
-                                dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-300">
+                                        dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-300">
                     {{ session('success') }}
                 </div>
             @endif
 
             @if(session('error'))
                 <div class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-sm
-                                dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-300">
+                                        dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-300">
                     {{ session('error') }}
                 </div>
             @endif
@@ -79,12 +79,12 @@
 
                                     @if($recommendation)
                                         <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700
-                                                         dark:bg-purple-900/40 dark:text-purple-300">
+                                                                 dark:bg-purple-900/40 dark:text-purple-300">
                                             ✨ AI Ready
                                         </span>
                                     @else
                                         <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600
-                                                         dark:bg-gray-800 dark:text-gray-300">
+                                                                 dark:bg-gray-800 dark:text-gray-300">
                                             Belum Generate AI
                                         </span>
                                     @endif
@@ -96,7 +96,7 @@
                                         </span>
                                     @elseif($isNearDeadline)
                                         <span class="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700
-                                                         dark:bg-red-900/30 dark:text-red-300">
+                                                                 dark:bg-red-900/30 dark:text-red-300">
                                             Deadline Dekat
                                         </span>
                                     @endif
@@ -195,7 +195,7 @@
                             </div>
 
                             <div class="mb-5 rounded-2xl border border-purple-100 bg-purple-50 p-5
-                                            dark:border-purple-900/50 dark:bg-purple-900/20">
+                                                            dark:border-purple-900/50 dark:bg-purple-900/20">
                                 <p class="text-sm font-bold text-purple-800 dark:text-purple-300">
                                     Kenapa tugas ini perlu diprioritaskan?
                                 </p>
@@ -209,12 +209,12 @@
                             <div
                                 class="mb-5 rounded-2xl bg-white p-5 border border-gray-100 dark:bg-gray-900 dark:border-gray-800">
                                 <div class="mb-4 flex items-center gap-2">
-                                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700
-                                                    dark:bg-indigo-900/40 dark:text-indigo-300">
+                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700 sm:h-11 sm:w-11
+                                                            dark:bg-indigo-900/40 dark:text-indigo-300">
                                         🧩
                                     </div>
 
-                                    <div>
+                                    <div class="min-w-0 flex-1">
                                         <h4 class="font-bold app-title">
                                             Langkah Pengerjaan
                                         </h4>
@@ -245,12 +245,12 @@
                             <div
                                 class="mb-5 rounded-2xl bg-white p-5 border border-gray-100 dark:bg-gray-900 dark:border-gray-800">
                                 <div class="mb-4 flex items-center gap-2">
-                                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-100 text-blue-700
-                                                    dark:bg-blue-900/40 dark:text-blue-300">
+                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700 sm:h-11 sm:w-11
+                                                dark:bg-indigo-900/40 dark:text-indigo-300">
                                         📅
                                     </div>
 
-                                    <div>
+                                    <div class="min-w-0 flex-1">
                                         <h4 class="font-bold app-title">
                                             Jadwal Rekomendasi
                                         </h4>
@@ -263,8 +263,9 @@
 
                                 <ul class="space-y-3">
                                     @foreach($recommendation->suggested_schedule ?? [] as $schedule)
-                                        <li class="rounded-2xl bg-blue-50 p-4 text-sm leading-6 text-blue-800 border border-blue-100
-                                                           dark:bg-blue-900/20 dark:border-blue-900/50 dark:text-blue-200">
+                                        <li
+                                            class="rounded-2xl bg-blue-50 p-4 text-sm leading-6 text-blue-800 border border-blue-100
+                                                                                   dark:bg-blue-900/20 dark:border-blue-900/50 dark:text-blue-200">
                                             {{ $schedule }}
                                         </li>
                                     @endforeach
@@ -273,7 +274,7 @@
 
                             {{-- Tips --}}
                             <div class="rounded-2xl border border-green-100 bg-green-50 p-5
-                                            dark:border-green-900/50 dark:bg-green-900/20">
+                                                            dark:border-green-900/50 dark:bg-green-900/20">
                                 <div class="mb-2 flex items-center gap-2">
                                     <span class="text-lg">💡</span>
 
@@ -288,7 +289,7 @@
                             </div>
                         @else
                             <div class="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center
-                                            dark:border-gray-700 dark:bg-gray-800">
+                                                    dark:border-gray-700 dark:bg-gray-800">
                                 <div class="mb-4 text-5xl">
                                     ✨
                                 </div>
@@ -431,7 +432,7 @@
                                     <div class="relative rounded-2xl app-card-soft p-4">
                                         <div class="flex items-start gap-3">
                                             <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700
-                                                                dark:bg-indigo-900/40 dark:text-indigo-300">
+                                                                                dark:bg-indigo-900/40 dark:text-indigo-300">
                                                 🔄
                                             </div>
 
@@ -476,7 +477,7 @@
                             </div>
                         @else
                             <div class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-6 text-center
-                                            dark:border-gray-700 dark:bg-gray-800">
+                                                    dark:border-gray-700 dark:bg-gray-800">
                                 <div class="mb-2 text-3xl">
                                     🕘
                                 </div>

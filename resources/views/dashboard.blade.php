@@ -7,15 +7,17 @@
         <div class="app-container">
 
             @if(session('success'))
-                <div class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-sm
-                                        dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-300">
+                <div
+                    class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-sm
+                                                                                dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-300">
                     {{ session('success') }}
                 </div>
             @endif
 
             @if(session('error'))
-                <div class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-sm
-                                        dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-300">
+                <div
+                    class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-sm
+                                                                                dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-300">
                     {{ session('error') }}
                 </div>
             @endif
@@ -51,8 +53,9 @@
             </div>
 
             @if($totalTasks == 0)
-                <div class="mb-6 rounded-3xl border border-dashed border-indigo-200 bg-indigo-50 p-8 text-center
-                                        dark:border-indigo-900/60 dark:bg-indigo-900/20">
+                <div
+                    class="mb-6 rounded-3xl border border-dashed border-indigo-200 bg-indigo-50 p-8 text-center
+                                                                                dark:border-indigo-900/60 dark:bg-indigo-900/20">
                     <div class="mb-3 text-5xl">
                         📝
                     </div>
@@ -72,9 +75,25 @@
                 </div>
             @endif
 
+            <div class="mb-3 flex items-center justify-between lg:hidden">
+                <p class="text-sm font-semibold app-subtitle">
+                    Ringkasan dashboard
+                </p>
+
+                <span class="inline-flex items-center gap-1.5 text-xs app-subtitle">
+                    Geser
+
+                    <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </span>
+            </div>
+
             {{-- Statistic Cards --}}
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-6">
-                <div class="rounded-3xl app-card p-6">
+            <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide
+            lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:pb-0">
+                <div class="min-w-[240px] snap-start lg:min-w-0 rounded-3xl app-card p-5 sm:p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium app-subtitle">Total Tugas</p>
@@ -88,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="rounded-3xl app-card p-6">
+                <div class="min-w-[240px] snap-start lg:min-w-0 rounded-3xl app-card p-5 sm:p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium app-subtitle">Tugas Selesai</p>
@@ -103,7 +122,7 @@
                     </div>
                 </div>
 
-                <div class="rounded-3xl app-card p-6">
+                <div class="min-w-[240px] snap-start lg:min-w-0 rounded-3xl app-card p-5 sm:p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium app-subtitle">Belum Selesai</p>
@@ -118,7 +137,7 @@
                     </div>
                 </div>
 
-                <div class="rounded-3xl app-card p-6">
+                <div class="min-w-[240px] snap-start lg:min-w-0 rounded-3xl app-card p-5 sm:p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium app-subtitle">Progress</p>
@@ -139,8 +158,9 @@
             </div>
 
             {{-- Insight Cards --}}
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-6">
-                <div class="rounded-3xl app-card p-6">
+            <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide
+            lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:pb-0">
+                <div class="min-w-[240px] snap-start lg:min-w-0 rounded-3xl app-card p-5 sm:p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium app-subtitle">Deadline Hari Ini</p>
@@ -158,7 +178,7 @@
                     </p>
                 </div>
 
-                <div class="rounded-3xl app-card p-6">
+                <div class="min-w-[240px] snap-start lg:min-w-0 rounded-3xl app-card p-5 sm:p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium app-subtitle">Deadline 7 Hari</p>
@@ -176,7 +196,7 @@
                     </p>
                 </div>
 
-                <div class="rounded-3xl app-card p-6">
+                <div class="min-w-[240px] snap-start lg:min-w-0 rounded-3xl app-card p-5 sm:p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium app-subtitle">Sangat Tinggi</p>
@@ -196,7 +216,7 @@
                     </p>
                 </div>
 
-                <div class="rounded-3xl app-card p-6">
+                <div class="min-w-[240px] snap-start lg:min-w-0 rounded-3xl app-card p-5 sm:p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium app-subtitle">Terlambat</p>
@@ -217,7 +237,7 @@
 
             @if($overdueTasks > 0)
                 <div class="mb-6 rounded-3xl border border-red-200 bg-red-50 p-5 shadow-sm
-                                        dark:border-red-900/50 dark:bg-red-900/20">
+                                                                                dark:border-red-900/50 dark:bg-red-900/20">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
                             <h3 class="text-lg font-bold text-red-700 dark:text-red-300">
@@ -275,8 +295,9 @@
                 @if($dailySummary)
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
                         {{-- Overview --}}
-                        <div class="lg:col-span-3 rounded-2xl border border-purple-100 bg-purple-50 p-5
-                                                dark:border-purple-900/50 dark:bg-purple-900/20">
+                        <div
+                            class="lg:col-span-3 rounded-2xl border border-purple-100 bg-purple-50 p-5
+                                                                                        dark:border-purple-900/50 dark:bg-purple-900/20">
                             <p class="text-sm font-bold text-purple-800 dark:text-purple-300">
                                 Overview
                             </p>
@@ -289,8 +310,9 @@
                         {{-- Focus Tasks --}}
                         <div class="rounded-2xl app-card-soft p-5">
                             <div class="mb-4 flex items-center gap-2">
-                                <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-red-100 text-red-700
-                                                        dark:bg-red-900/40 dark:text-red-300">
+                                <div
+                                    class="flex h-9 w-9 items-center justify-center rounded-xl bg-red-100 text-red-700
+                                                                                                dark:bg-red-900/40 dark:text-red-300">
                                     🔥
                                 </div>
 
@@ -306,8 +328,9 @@
 
                             <ol class="space-y-3">
                                 @foreach($dailySummary->focus_tasks ?? [] as $index => $focus)
-                                    <li class="flex gap-3 rounded-2xl bg-white p-4 border border-gray-100
-                                                                       dark:bg-gray-900 dark:border-gray-700">
+                                    <li
+                                        class="flex gap-3 rounded-2xl bg-white p-4 border border-gray-100
+                                                                                                                                                       dark:bg-gray-900 dark:border-gray-700">
                                         <span
                                             class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
                                             {{ $index + 1 }}
@@ -324,8 +347,9 @@
                         {{-- Suggested Plan --}}
                         <div class="rounded-2xl app-card-soft p-5">
                             <div class="mb-4 flex items-center gap-2">
-                                <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700
-                                                        dark:bg-indigo-900/40 dark:text-indigo-300">
+                                <div
+                                    class="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700
+                                                                                                dark:bg-indigo-900/40 dark:text-indigo-300">
                                     📅
                                 </div>
 
@@ -341,8 +365,9 @@
 
                             <ul class="space-y-3">
                                 @foreach($dailySummary->suggested_plan ?? [] as $plan)
-                                    <li class="rounded-2xl bg-white p-4 text-sm leading-6 app-text border border-gray-100
-                                                                       dark:bg-gray-900 dark:border-gray-700">
+                                    <li
+                                        class="rounded-2xl bg-white p-4 text-sm leading-6 app-text border border-gray-100
+                                                                                                                                                       dark:bg-gray-900 dark:border-gray-700">
                                         {{ $plan }}
                                     </li>
                                 @endforeach
@@ -350,11 +375,13 @@
                         </div>
 
                         {{-- Tips --}}
-                        <div class="rounded-2xl border border-green-100 bg-green-50 p-5
-                                                dark:border-green-900/50 dark:bg-green-900/20">
+                        <div
+                            class="rounded-2xl border border-green-100 bg-green-50 p-5
+                                                                                        dark:border-green-900/50 dark:bg-green-900/20">
                             <div class="mb-4 flex items-center gap-2">
-                                <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-green-100 text-green-700
-                                                        dark:bg-green-900/40 dark:text-green-300">
+                                <div
+                                    class="flex h-9 w-9 items-center justify-center rounded-xl bg-green-100 text-green-700
+                                                                                                dark:bg-green-900/40 dark:text-green-300">
                                     💡
                                 </div>
 
@@ -379,7 +406,7 @@
                     </p>
                 @else
                     <div class="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center
-                                            dark:border-gray-700 dark:bg-gray-800">
+                                                                                    dark:border-gray-700 dark:bg-gray-800">
                         <div class="mb-4 text-5xl">
                             ✨
                         </div>
@@ -438,8 +465,9 @@
                                 $statusClass = $statusClasses[$task->status] ?? 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700';
                             @endphp
 
-                            <div class="rounded-2xl border border-gray-100 bg-gray-50 p-5 hover:bg-white hover:shadow-md transition
-                                                    dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-800/80">
+                            <div
+                                class="rounded-2xl border border-gray-100 bg-gray-50 p-5 hover:bg-white hover:shadow-md transition
+                                                                                            dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-800/80">
                                 <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                                     <div>
                                         <div class="flex flex-wrap items-center gap-2 mb-2">
@@ -456,12 +484,13 @@
                                             @if($task->aiRecommendation)
                                                 <span
                                                     class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700
-                                                                                     dark:bg-purple-900/40 dark:text-purple-300">
+                                                                                                                                                                     dark:bg-purple-900/40 dark:text-purple-300">
                                                     AI Ready
                                                 </span>
                                             @else
-                                                <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600
-                                                                                     dark:bg-gray-700 dark:text-gray-300">
+                                                <span
+                                                    class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600
+                                                                                                                                                                     dark:bg-gray-700 dark:text-gray-300">
                                                     Belum Generate AI
                                                 </span>
                                             @endif
@@ -489,8 +518,9 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center
-                                                    dark:border-gray-700 dark:bg-gray-800">
+                            <div
+                                class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center
+                                                                                            dark:border-gray-700 dark:bg-gray-800">
                                 <div class="text-4xl mb-3">🎉</div>
                                 <h4 class="font-bold app-title">Belum ada tugas prioritas.</h4>
                                 <p class="mt-1 text-sm app-subtitle">
