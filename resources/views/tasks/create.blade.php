@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-8 app-page min-h-screen">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+        <div class="app-container-md">
 
             <div class="mb-6 app-hero p-7">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
@@ -14,7 +14,8 @@
                         </h1>
 
                         <p class="app-hero-text">
-                            Isi deadline, tingkat kesulitan, estimasi waktu, dan bobot nilai. Sistem akan menghitung skor prioritas tugas secara otomatis.
+                            Isi deadline, tingkat kesulitan, estimasi waktu, dan bobot nilai. Sistem akan menghitung
+                            skor prioritas tugas secara otomatis.
                         </p>
                     </div>
 
@@ -49,9 +50,8 @@
                                         Mata Kuliah
                                     </label>
 
-                                    <select name="subject_id"
-                                            class="w-full rounded-2xl px-4 py-3 text-sm app-select"
-                                            required>
+                                    <select name="subject_id" class="w-full rounded-2xl px-4 py-3 text-sm app-select"
+                                        required>
                                         <option value="">Pilih mata kuliah</option>
                                         @foreach($subjects as $subject)
                                             <option value="{{ $subject->id }}" @selected(old('subject_id') == $subject->id)>
@@ -70,12 +70,9 @@
                                         Nama Tugas
                                     </label>
 
-                                    <input type="text"
-                                           name="title"
-                                           value="{{ old('title') }}"
-                                           placeholder="Contoh: Laporan Black Box Testing"
-                                           class="w-full rounded-2xl px-4 py-3 text-sm app-input"
-                                           required>
+                                    <input type="text" name="title" value="{{ old('title') }}"
+                                        placeholder="Contoh: Laporan Black Box Testing"
+                                        class="w-full rounded-2xl px-4 py-3 text-sm app-input" required>
 
                                     @error('title')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -87,10 +84,9 @@
                                         Deskripsi Tugas
                                     </label>
 
-                                    <textarea name="description"
-                                              rows="5"
-                                              placeholder="Contoh: Membuat laporan pengujian black box testing lengkap dengan tabel test case dan hasil evaluasi."
-                                              class="w-full rounded-2xl px-4 py-3 text-sm app-input">{{ old('description') }}</textarea>
+                                    <textarea name="description" rows="5"
+                                        placeholder="Contoh: Membuat laporan pengujian black box testing lengkap dengan tabel test case dan hasil evaluasi."
+                                        class="w-full rounded-2xl px-4 py-3 text-sm app-input">{{ old('description') }}</textarea>
 
                                     @error('description')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -116,11 +112,8 @@
                                         Deadline
                                     </label>
 
-                                    <input type="datetime-local"
-                                           name="deadline"
-                                           value="{{ old('deadline') }}"
-                                           class="w-full rounded-2xl px-4 py-3 text-sm app-input"
-                                           required>
+                                    <input type="datetime-local" name="deadline" value="{{ old('deadline') }}"
+                                        class="w-full rounded-2xl px-4 py-3 text-sm app-input" required>
 
                                     @error('deadline')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
@@ -133,13 +126,9 @@
                                     </label>
 
                                     <div class="relative">
-                                        <input type="number"
-                                               name="estimated_duration"
-                                               value="{{ old('estimated_duration') }}"
-                                               min="1"
-                                               placeholder="Contoh: 3"
-                                               class="w-full rounded-2xl px-4 py-3 pr-14 text-sm app-input"
-                                               required>
+                                        <input type="number" name="estimated_duration"
+                                            value="{{ old('estimated_duration') }}" min="1" placeholder="Contoh: 3"
+                                            class="w-full rounded-2xl px-4 py-3 pr-14 text-sm app-input" required>
 
                                         <span class="absolute right-4 top-3 text-sm app-subtitle">
                                             jam
@@ -156,9 +145,8 @@
                                         Tingkat Kesulitan
                                     </label>
 
-                                    <select name="difficulty"
-                                            class="w-full rounded-2xl px-4 py-3 text-sm app-select"
-                                            required>
+                                    <select name="difficulty" class="w-full rounded-2xl px-4 py-3 text-sm app-select"
+                                        required>
                                         <option value="">Pilih kesulitan</option>
                                         <option value="rendah" @selected(old('difficulty') == 'rendah')>Rendah</option>
                                         <option value="sedang" @selected(old('difficulty') == 'sedang')>Sedang</option>
@@ -175,9 +163,8 @@
                                         Bobot Nilai
                                     </label>
 
-                                    <select name="task_weight"
-                                            class="w-full rounded-2xl px-4 py-3 text-sm app-select"
-                                            required>
+                                    <select name="task_weight" class="w-full rounded-2xl px-4 py-3 text-sm app-select"
+                                        required>
                                         <option value="">Pilih bobot</option>
                                         <option value="kecil" @selected(old('task_weight') == 'kecil')>Kecil</option>
                                         <option value="sedang" @selected(old('task_weight') == 'sedang')>Sedang</option>
@@ -191,8 +178,20 @@
                             </div>
 
                             <input type="hidden" name="status" value="belum_dikerjakan">
-                        </div>
 
+                            {{-- Action --}}
+                            <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-end">
+                                <a href="{{ route('tasks.index') }}"
+                                    class="rounded-2xl px-5 py-3 text-center text-sm font-semibold app-button-secondary transition">
+                                    Batal
+                                </a>
+
+                                <button type="submit"
+                                    class="rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition">
+                                    Simpan Tugas
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     {{-- Sidebar Info --}}
@@ -252,24 +251,12 @@
                                 Tips Input
                             </h3>
                             <p class="mt-2 text-sm text-indigo-100 dark:text-indigo-200">
-                                Jangan ngisi estimasi terlalu kecil cuma biar kelihatan ringan. Isi realistis supaya rekomendasi AI lebih akurat.
+                                Jangan ngisi estimasi terlalu kecil cuma biar kelihatan ringan. Isi realistis supaya
+                                rekomendasi AI lebih akurat.
                             </p>
                         </div>
 
                     </div>
-                </div>
-
-                {{-- Action --}}
-                <div class="flex flex-col sm:flex-row gap-3 justify-end">
-                    <a href="{{ route('tasks.index') }}"
-                       class="rounded-2xl px-5 py-3 text-center text-sm font-semibold app-button-secondary transition">
-                        Batal
-                    </a>
-
-                    <button type="submit"
-                            class="rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition">
-                        Simpan Tugas
-                    </button>
                 </div>
             </form>
 

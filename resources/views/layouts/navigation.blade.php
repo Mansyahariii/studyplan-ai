@@ -178,104 +178,138 @@
         class="md:hidden border-t border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-950"
         style="display: none;">
 
-        <div class="space-y-2 px-4 py-4">
-            <a href="{{ route('dashboard') }}"
-                class="{{ request()->routeIs('dashboard')
-    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
-    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                Dashboard
-            </a>
+        <div class="px-4 py-5 space-y-5">
 
-            <a href="{{ route('subjects.index') }}"
-                class="{{ request()->routeIs('subjects.*')
-    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
-    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                Mata Kuliah
-            </a>
+            {{-- User Card --}}
+            <div class="rounded-3xl border border-gray-100 bg-gray-50 p-4
+                    dark:border-gray-800 dark:bg-gray-900">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-600 text-sm font-black text-white">
+                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                    </div>
 
-            <a href="{{ route('tasks.index') }}"
-                class="{{ request()->routeIs('tasks.*')
-    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
-    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                Tugas
-            </a>
+                    <div class="min-w-0">
+                        <p class="truncate text-sm font-bold text-gray-900 dark:text-white">
+                            {{ Auth::user()->name }}
+                        </p>
 
-            <a href="{{ route('guide') }}"
-                class="{{ request()->routeIs('guide')
-    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
-    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                Panduan
-            </a>
-
-            <a href="{{ route('about') }}"
-                class="{{ request()->routeIs('about')
-    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
-    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                Tentang
-            </a>
-        </div>
-
-        <div class="border-t border-gray-100 px-4 py-4 dark:border-gray-800">
-            <div class="mb-3 flex items-center gap-3">
-                <div
-                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-sm font-bold text-white">
-                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                </div>
-
-                <div>
-                    <p class="text-sm font-bold text-gray-900 dark:text-white">
-                        {{ Auth::user()->name }}
-                    </p>
-
-                    <p class="text-xs text-gray-500 dark:text-gray-400">
-                        {{ Auth::user()->email }}
-                    </p>
+                        <p class="truncate text-xs text-gray-500 dark:text-gray-400">
+                            {{ Auth::user()->email }}
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            {{-- Mobile Dark Mode Toggle --}}
-            <button type="button" x-data="{
-                        darkMode: document.documentElement.classList.contains('dark'),
-                        toggle() {
-                            this.darkMode = !this.darkMode;
+            {{-- Main Navigation --}}
+            <div>
+                <p class="mb-2 px-2 text-xs font-bold uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                    Menu Utama
+                </p>
 
-                            if (this.darkMode) {
-                                document.documentElement.classList.add('dark');
-                                localStorage.setItem('theme', 'dark');
-                            } else {
-                                document.documentElement.classList.remove('dark');
-                                localStorage.setItem('theme', 'light');
+                <div class="space-y-2">
+                    <a href="{{ route('dashboard') }}"
+                        class="{{ request()->routeIs('dashboard')
+    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold transition">
+                        <span>Dashboard</span>
+                        <span>🏠</span>
+                    </a>
+
+                    <a href="{{ route('subjects.index') }}"
+                        class="{{ request()->routeIs('subjects.*')
+    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold transition">
+                        <span>Mata Kuliah</span>
+                        <span>📚</span>
+                    </a>
+
+                    <a href="{{ route('tasks.index') }}"
+                        class="{{ request()->routeIs('tasks.*')
+    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold transition">
+                        <span>Tugas</span>
+                        <span>✅</span>
+                    </a>
+
+                    <a href="{{ route('guide') }}"
+                        class="{{ request()->routeIs('guide')
+    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold transition">
+                        <span>Panduan</span>
+                        <span>🧭</span>
+                    </a>
+
+                    <a href="{{ route('about') }}"
+                        class="{{ request()->routeIs('about')
+    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300'
+    : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800' }} flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold transition">
+                        <span>Tentang</span>
+                        <span>ℹ️</span>
+                    </a>
+                </div>
+            </div>
+
+            {{-- Quick Action --}}
+            <div>
+                <a href="{{ route('tasks.create') }}"
+                    class="flex items-center justify-center rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-700 transition">
+                    + Tambah Tugas
+                </a>
+            </div>
+
+            {{-- System --}}
+            <div>
+                <p class="mb-2 px-2 text-xs font-bold uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                    Akun & Sistem
+                </p>
+
+                <div class="space-y-2">
+                    <a href="{{ url('/') }}" class="flex items-center justify-between rounded-2xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100
+                          dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+                        <span>Beranda</span>
+                        <span>🌐</span>
+                    </a>
+
+                    <a href="{{ route('profile.edit') }}" class="flex items-center justify-between rounded-2xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100
+                          dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+                        <span>Profil Saya</span>
+                        <span>👤</span>
+                    </a>
+
+                    <button type="button" x-data="{
+                            darkMode: document.documentElement.classList.contains('dark'),
+                            toggle() {
+                                this.darkMode = !this.darkMode;
+
+                                if (this.darkMode) {
+                                    document.documentElement.classList.add('dark');
+                                    localStorage.setItem('theme', 'dark');
+                                } else {
+                                    document.documentElement.classList.remove('dark');
+                                    localStorage.setItem('theme', 'light');
+                                }
                             }
-                        }
-                    }" @click="toggle()" class="mb-2 flex w-full items-center justify-between rounded-2xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition
-                           hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
-                <span>Mode Tampilan</span>
+                        }" @click="toggle()" class="flex w-full items-center justify-between rounded-2xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100
+                               dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+                        <span>Mode Tampilan</span>
 
-                <span>
-                    <span x-show="!darkMode">🌙 Dark</span>
-                    <span x-show="darkMode">☀️ Light</span>
-                </span>
-            </button>
-
-            <div class="space-y-2">
-                <a href="{{ route('profile.edit') }}" class="block rounded-2xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition
-                          hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
-                    Profil Saya
-                </a>
-
-                <a href="{{ url('/') }}" class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition
-          dark:text-gray-200 dark:hover:bg-gray-800">
-                    <span>Landing Page</span>
-                </a>
-
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <button type="submit" class="block w-full rounded-2xl bg-red-50 px-4 py-3 text-left text-sm font-semibold text-red-600 transition
-                                   hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30">
-                        Logout
+                        <span>
+                            <span x-show="!darkMode">🌙</span>
+                            <span x-show="darkMode">☀️</span>
+                        </span>
                     </button>
-                </form>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <button type="submit" class="flex w-full items-center justify-between rounded-2xl bg-red-50 px-4 py-3 text-left text-sm font-semibold text-red-600 transition hover:bg-red-100
+                                   dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30">
+                            <span>Logout</span>
+                            <span>🚪</span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

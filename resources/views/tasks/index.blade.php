@@ -9,18 +9,18 @@
     @endphp
 
     <div class="py-8 app-page min-h-screen">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="app-container">
 
             @if(session('success'))
                 <div class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-sm
-                                    dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-300">
+                                                dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-300">
                     {{ session('success') }}
                 </div>
             @endif
 
             @if(session('error'))
                 <div class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-sm
-                                    dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-300">
+                                                dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-300">
                     {{ session('error') }}
                 </div>
             @endif
@@ -73,7 +73,7 @@
 
                         @if($isFilterActive)
                             <div class="w-fit rounded-2xl bg-purple-50 px-4 py-2 text-sm font-semibold text-purple-700
-                                                dark:bg-purple-900/40 dark:text-purple-300">
+                                                            dark:bg-purple-900/40 dark:text-purple-300">
                                 Filter Aktif
                             </div>
                         @endif
@@ -100,7 +100,7 @@
 
                                 @if($isFilterActive)
                                     <span class="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-bold text-indigo-700
-                                                         dark:bg-indigo-900/50 dark:text-indigo-300">
+                                                                     dark:bg-indigo-900/50 dark:text-indigo-300">
                                         Aktif
                                     </span>
                                 @endif
@@ -274,91 +274,85 @@
                             $isOverdue = $task->deadline->isPast() && $task->status !== 'selesai';
                         @endphp
 
-                        <div class="rounded-3xl border border-gray-100 bg-gray-50 p-6 hover:bg-white hover:shadow-md transition
-                                            dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800">
-                            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+                        <div class="rounded-3xl app-card p-5 sm:p-6">
+                            <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
 
-                                {{-- Left Content --}}
-                                <div class="flex-1">
-                                    <div class="mb-3 flex flex-wrap items-center gap-2">
-                                        <span
-                                            class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold {{ $priorityClass }}">
+                                {{-- Informasi Tugas --}}
+                                <div class="min-w-0 flex-1">
+
+                                    {{-- Badge --}}
+                                    <div class="mb-4 flex flex-wrap gap-2">
+                                        <span class="rounded-full px-3 py-1 text-xs font-semibold {{ $priorityClass }}">
                                             {{ ucwords(str_replace('_', ' ', $task->priority_level)) }}
                                         </span>
 
-                                        <span
-                                            class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold {{ $statusClass }}">
+                                        <span class="rounded-full px-3 py-1 text-xs font-semibold {{ $statusClass }}">
                                             {{ ucwords(str_replace('_', ' ', $task->status)) }}
                                         </span>
 
                                         @if($task->aiRecommendation)
-                                            <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700
-                                                                         dark:bg-purple-900/40 dark:text-purple-300">
-                                                ✨ AI Ready
+                                            <span class="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700
+                                                             dark:bg-purple-900/30 dark:text-purple-300">
+                                                AI Ready
                                             </span>
                                         @else
-                                            <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600
-                                                                         dark:bg-gray-800 dark:text-gray-300">
+                                            <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600
+                                                             dark:bg-gray-800 dark:text-gray-300">
                                                 Belum Generate AI
-                                            </span>
-                                        @endif
-
-                                        @if($isOverdue)
-                                            <span
-                                                class="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white">
-                                                Terlewat Deadline
-                                            </span>
-                                        @elseif($isNearDeadline)
-                                            <span class="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700
-                                                                         dark:bg-red-900/30 dark:text-red-300">
-                                                Deadline Dekat
                                             </span>
                                         @endif
                                     </div>
 
-                                    <h3 class="text-xl font-bold app-title">
+                                    {{-- Judul --}}
+                                    <h3 class="break-words text-lg font-bold app-title sm:text-xl">
                                         {{ $task->title }}
                                     </h3>
 
+                                    {{-- Mata kuliah --}}
                                     <p class="mt-1 text-sm app-subtitle">
                                         {{ $task->subject->name ?? 'Mata kuliah tidak ditemukan' }}
                                     </p>
 
+                                    {{-- Deskripsi --}}
                                     @if($task->description)
-                                        <p class="mt-3 text-sm app-text">
-                                            {{ \Illuminate\Support\Str::limit($task->description, 140) }}
+                                        <p class="mt-3 line-clamp-2 break-words text-sm leading-6 app-text">
+                                            {{ $task->description }}
                                         </p>
                                     @endif
 
-                                    <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                        <div
-                                            class="rounded-2xl bg-white p-4 border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-                                            <p class="text-xs font-medium app-subtitle">Deadline</p>
-                                            <p class="mt-1 text-sm font-semibold app-title">
+                                    {{-- Meta info --}}
+                                    <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                                        <div class="rounded-2xl app-card-soft p-4">
+                                            <p class="text-xs font-semibold app-subtitle">
+                                                Deadline
+                                            </p>
+                                            <p class="mt-1 text-sm font-bold app-title">
                                                 {{ $task->deadline->format('d M Y H:i') }}
                                             </p>
                                         </div>
 
-                                        <div
-                                            class="rounded-2xl bg-white p-4 border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-                                            <p class="text-xs font-medium app-subtitle">Estimasi</p>
-                                            <p class="mt-1 text-sm font-semibold app-title">
+                                        <div class="rounded-2xl app-card-soft p-4">
+                                            <p class="text-xs font-semibold app-subtitle">
+                                                Estimasi
+                                            </p>
+                                            <p class="mt-1 text-sm font-bold app-title">
                                                 {{ $task->estimated_duration }} jam
                                             </p>
                                         </div>
 
-                                        <div
-                                            class="rounded-2xl bg-white p-4 border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-                                            <p class="text-xs font-medium app-subtitle">Skor Prioritas</p>
-                                            <p class="mt-1 text-sm font-semibold app-title">
+                                        <div class="rounded-2xl app-card-soft p-4">
+                                            <p class="text-xs font-semibold app-subtitle">
+                                                Skor Prioritas
+                                            </p>
+                                            <p class="mt-1 text-sm font-bold app-title">
                                                 {{ $task->priority_score }}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
-                                {{-- Right Action --}}
-                                <div class="flex flex-row lg:flex-col gap-2 lg:min-w-[150px]">
+                                {{-- Aksi --}}
+                                <div class="flex w-full flex-col gap-2 lg:w-40 lg:shrink-0">
 
                                     {{-- Quick Status --}}
                                     <form action="{{ route('tasks.quick-status', $task) }}" method="POST">
@@ -366,12 +360,12 @@
                                         @method('PATCH')
 
                                         <select name="status" onchange="this.form.submit()"
-                                            class="w-full rounded-xl px-3 py-2 text-sm font-semibold app-select">
+                                            class="w-full rounded-2xl px-4 py-3 text-sm font-semibold app-select">
                                             <option value="belum_dikerjakan" @selected($task->status == 'belum_dikerjakan')>
                                                 Belum
                                             </option>
                                             <option value="sedang_dikerjakan" @selected($task->status == 'sedang_dikerjakan')>
-                                                Proses
+                                                Dikerjakan
                                             </option>
                                             <option value="selesai" @selected($task->status == 'selesai')>
                                                 Selesai
@@ -383,33 +377,31 @@
                                     </form>
 
                                     <a href="{{ route('tasks.show', $task) }}"
-                                        class="flex-1 rounded-xl bg-indigo-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-700 transition">
+                                        class="flex w-full items-center justify-center rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white hover:bg-indigo-700 transition">
                                         Detail
                                     </a>
 
-                                    <a href="{{ route('tasks.edit', $task) }}"
-                                        class="flex-1 rounded-xl bg-yellow-100 px-4 py-2 text-center text-sm font-semibold text-yellow-700 hover:bg-yellow-200 transition
-                                                      dark:bg-yellow-900/30 dark:text-yellow-300 dark:hover:bg-yellow-900/50">
+                                    <a href="{{ route('tasks.edit', $task) }}" class="flex w-full items-center justify-center rounded-2xl bg-yellow-100 px-4 py-3 text-sm font-bold text-yellow-700 hover:bg-yellow-200 transition
+                                  dark:bg-yellow-900/30 dark:text-yellow-300 dark:hover:bg-yellow-900/50">
                                         Edit
                                     </a>
 
-                                    <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="flex-1">
+                                    <form action="{{ route('tasks.destroy', $task) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit"
-                                            class="w-full rounded-xl bg-red-100 px-4 py-2 text-sm font-semibold text-red-700 hover:bg-red-200 transition
-                                                               dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50"
-                                            onclick="return confirm('Hapus tugas ini?')">
+                                        <button type="submit" onclick="return confirm('Hapus tugas ini?')" class="flex w-full items-center justify-center rounded-2xl bg-red-100 px-4 py-3 text-sm font-bold text-red-700 hover:bg-red-200 transition
+                                           dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50">
                                             Hapus
                                         </button>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                     @empty
                         <div class="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-12 text-center
-                                            dark:border-gray-700 dark:bg-gray-800">
+                                                        dark:border-gray-700 dark:bg-gray-800">
                             <div class="mb-4 text-5xl">
                                 🔎
                             </div>
@@ -425,7 +417,7 @@
                             <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
                                 <a href="{{ route('tasks.index') }}"
                                     class="rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-gray-700 border border-gray-200 hover:bg-gray-50 transition
-                                                  dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                                                              dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
                                     Reset Filter
                                 </a>
 

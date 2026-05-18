@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-8 app-page min-h-screen">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+        <div class="app-container-md">
 
             <div class="mb-6 app-hero p-7">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">

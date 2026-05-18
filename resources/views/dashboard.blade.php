@@ -4,7 +4,7 @@
     @endphp
 
     <div class="py-8 app-page min-h-screen">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="app-container">
 
             @if(session('success'))
                 <div class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-sm
