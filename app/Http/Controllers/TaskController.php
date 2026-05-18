@@ -114,7 +114,7 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        abort_if($task->user_id !== Auth::id(), 403);
+        abort_if((int) $task->user_id !== (int) Auth::id(), 403);
 
         $task->load([
             'subject',
@@ -127,7 +127,7 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
-        abort_if($task->user_id !== Auth::id(), 403);
+        abort_if((int) $task->user_id !== (int) Auth::id(), 403);
 
         $subjects = Subject::where('user_id', Auth::id())->get();
 
@@ -136,7 +136,7 @@ class TaskController extends Controller
 
     public function update(Request $request, Task $task, PriorityService $priorityService)
     {
-        abort_if($task->user_id !== Auth::id(), 403);
+        abort_if((int) $task->user_id !== (int) Auth::id(), 403);
 
         $validated = $request->validate([
             'subject_id' => 'required|exists:subjects,id',
@@ -187,7 +187,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
-        abort_if($task->user_id !== Auth::id(), 403);
+        abort_if((int) $task->user_id !== (int) Auth::id(), 403);
 
         $task->delete();
 
@@ -198,7 +198,7 @@ class TaskController extends Controller
 
     public function quickUpdateStatus(Request $request, Task $task)
     {
-        abort_if($task->user_id !== Auth::id(), 403);
+        abort_if((int) $task->user_id !== (int) Auth::id(), 403);
 
         $validated = $request->validate([
             'status' => 'required|in:belum_dikerjakan,sedang_dikerjakan,selesai,terlambat',

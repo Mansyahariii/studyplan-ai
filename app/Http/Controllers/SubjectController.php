@@ -42,14 +42,14 @@ class SubjectController extends Controller
 
     public function edit(Subject $subject)
     {
-        abort_if($subject->user_id !== Auth::id(), 403);
+        abort_if((int) $subject->user_id !== (int) Auth::id(), 403);
 
         return view('subjects.edit', compact('subject'));
     }
 
     public function update(Request $request, Subject $subject)
     {
-        abort_if($subject->user_id !== Auth::id(), 403);
+        abort_if((int) $subject->user_id !== (int) Auth::id(), 403);
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -65,7 +65,7 @@ class SubjectController extends Controller
 
     public function destroy(Subject $subject)
     {
-        abort_if($subject->user_id !== Auth::id(), 403);
+        abort_if((int) $subject->user_id !== (int) Auth::id(), 403);
 
         $subject->delete();
 

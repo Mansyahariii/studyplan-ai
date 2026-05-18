@@ -12,7 +12,7 @@ class AiRecommendationController extends Controller
 {
     public function generate(Task $task, AiRecommendationService $aiService)
     {
-        abort_if($task->user_id !== Auth::id(), 403);
+        abort_if((int) $task->user_id !== (int) Auth::id(), 403);
 
         $task->load('subject');
 

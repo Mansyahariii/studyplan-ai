@@ -15,11 +15,17 @@ class Subject extends Model
         'description',
     ];
 
-    public function user(){
+    protected $casts = [
+        'user_id' => 'integer',
+    ];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function tasks(){
+    public function tasks()
+    {
         return $this->hasMany(Task::class);
     }
 }

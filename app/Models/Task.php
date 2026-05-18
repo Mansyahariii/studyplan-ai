@@ -27,6 +27,8 @@ class Task extends Model
 
     protected $casts = [
         'deadline' => 'datetime',
+        'user_id' => 'integer',
+        'subject_id' => 'integer',
     ];
 
     public function user()
