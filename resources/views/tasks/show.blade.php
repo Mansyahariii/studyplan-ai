@@ -1,24 +1,36 @@
 <x-app-layout>
     @php
         $priorityClasses = [
-            'sangat_tinggi' => 'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
-            'tinggi' => 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800',
-            'sedang' => 'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-800',
-            'rendah' => 'bg-green-100 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
+            'sangat_tinggi' =>
+                'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
+            'tinggi' =>
+                'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800',
+            'sedang' =>
+                'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-800',
+            'rendah' =>
+                'bg-green-100 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
         ];
 
         $statusClasses = [
-            'belum_dikerjakan' => 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700',
-            'sedang_dikerjakan' => 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800',
-            'selesai' => 'bg-green-100 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
-            'terlambat' => 'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
+            'belum_dikerjakan' =>
+                'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700',
+            'sedang_dikerjakan' =>
+                'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800',
+            'selesai' =>
+                'bg-green-100 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
+            'terlambat' =>
+                'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
         ];
 
         $riskClasses = [
-            'sangat tinggi' => 'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
-            'tinggi' => 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800',
-            'sedang' => 'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-800',
-            'rendah' => 'bg-green-100 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
+            'sangat tinggi' =>
+                'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
+            'tinggi' =>
+                'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800',
+            'sedang' =>
+                'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-800',
+            'rendah' =>
+                'bg-green-100 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
         ];
 
         $historyStatusClasses = [
@@ -28,30 +40,37 @@
             'terlambat' => 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
         ];
 
-        $priorityClass = $priorityClasses[$task->priority_level] ?? 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700';
-        $statusClass = $statusClasses[$task->status] ?? 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700';
+        $priorityClass =
+            $priorityClasses[$task->priority_level] ??
+            'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700';
+        $statusClass =
+            $statusClasses[$task->status] ??
+            'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700';
 
         $isNearDeadline = $task->deadline->isFuture() && now()->diffInHours($task->deadline, false) <= 24;
         $isOverdue = $task->deadline->isPast() && $task->status !== 'selesai';
 
         $recommendation = $task->aiRecommendation;
         $riskClass = $recommendation
-            ? ($riskClasses[strtolower($recommendation->risk_level)] ?? 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700')
+            ? $riskClasses[strtolower($recommendation->risk_level)] ??
+                'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700'
             : 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700';
     @endphp
 
     <div class="py-8 app-page min-h-screen">
         <div class="app-container">
 
-            @if(session('success'))
-                <div class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-sm
+            @if (session('success'))
+                <div
+                    class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-sm
                                         dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-300">
                     {{ session('success') }}
                 </div>
             @endif
 
-            @if(session('error'))
-                <div class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-sm
+            @if (session('error'))
+                <div
+                    class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-sm
                                         dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-300">
                     {{ session('error') }}
                 </div>
@@ -77,25 +96,28 @@
                                         {{ ucwords(str_replace('_', ' ', $task->status)) }}
                                     </span>
 
-                                    @if($recommendation)
-                                        <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700
+                                    @if ($recommendation)
+                                        <span
+                                            class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700
                                                                  dark:bg-purple-900/40 dark:text-purple-300">
                                             ✨ AI Ready
                                         </span>
                                     @else
-                                        <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600
+                                        <span
+                                            class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600
                                                                  dark:bg-gray-800 dark:text-gray-300">
                                             Belum Generate AI
                                         </span>
                                     @endif
 
-                                    @if($isOverdue)
+                                    @if ($isOverdue)
                                         <span
                                             class="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white">
                                             Terlewat Deadline
                                         </span>
                                     @elseif($isNearDeadline)
-                                        <span class="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700
+                                        <span
+                                            class="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700
                                                                  dark:bg-red-900/30 dark:text-red-300">
                                             Deadline Dekat
                                         </span>
@@ -110,7 +132,7 @@
                                     {{ $task->subject->name ?? 'Mata kuliah tidak ditemukan' }}
                                 </p>
 
-                                @if($task->description)
+                                @if ($task->description)
                                     <div class="mt-5 rounded-2xl app-card-soft p-5">
                                         <p class="text-xs font-semibold uppercase tracking-wide app-subtitle">
                                             Deskripsi Tugas
@@ -124,7 +146,8 @@
                             </div>
 
                             <div class="flex flex-row md:flex-col gap-2 md:min-w-[150px]">
-                                <a href="{{ route('tasks.edit', $task) }}" class="flex-1 rounded-xl bg-yellow-100 px-4 py-2 text-center text-sm font-semibold text-yellow-700 hover:bg-yellow-200 transition
+                                <a href="{{ route('tasks.edit', $task) }}"
+                                    class="flex-1 rounded-xl bg-yellow-100 px-4 py-2 text-center text-sm font-semibold text-yellow-700 hover:bg-yellow-200 transition
                                           dark:bg-yellow-900/30 dark:text-yellow-300 dark:hover:bg-yellow-900/50">
                                     Edit
                                 </a>
@@ -146,7 +169,7 @@
                                 </h3>
 
                                 <p class="text-sm app-subtitle">
-                                    AI membantu memberi strategi pengerjaan berdasarkan data tugas dan skor prioritas.
+                                    Limit AI: 5 request/menit. Generate ulang tersedia setelah 3 menit.
                                 </p>
                             </div>
 
@@ -167,7 +190,7 @@
                             </form>
                         </div>
 
-                        @if($recommendation)
+                        @if ($recommendation)
                             {{-- Risk and Reason --}}
                             <div class="mb-5 grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="rounded-2xl app-card-soft p-5">
@@ -194,7 +217,8 @@
                                 </div>
                             </div>
 
-                            <div class="mb-5 rounded-2xl border border-purple-100 bg-purple-50 p-5
+                            <div
+                                class="mb-5 rounded-2xl border border-purple-100 bg-purple-50 p-5
                                                             dark:border-purple-900/50 dark:bg-purple-900/20">
                                 <p class="text-sm font-bold text-purple-800 dark:text-purple-300">
                                     Kenapa tugas ini perlu diprioritaskan?
@@ -209,7 +233,8 @@
                             <div
                                 class="mb-5 rounded-2xl bg-white p-5 border border-gray-100 dark:bg-gray-900 dark:border-gray-800">
                                 <div class="mb-4 flex items-center gap-2">
-                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700 sm:h-11 sm:w-11
+                                    <div
+                                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700 sm:h-11 sm:w-11
                                                             dark:bg-indigo-900/40 dark:text-indigo-300">
                                         🧩
                                     </div>
@@ -226,7 +251,7 @@
                                 </div>
 
                                 <ol class="space-y-3">
-                                    @foreach($recommendation->suggested_steps ?? [] as $index => $step)
+                                    @foreach ($recommendation->suggested_steps ?? [] as $index => $step)
                                         <li class="flex gap-3 rounded-2xl app-card-soft p-4">
                                             <span
                                                 class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white">
@@ -245,7 +270,8 @@
                             <div
                                 class="mb-5 rounded-2xl bg-white p-5 border border-gray-100 dark:bg-gray-900 dark:border-gray-800">
                                 <div class="mb-4 flex items-center gap-2">
-                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700 sm:h-11 sm:w-11
+                                    <div
+                                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-700 sm:h-11 sm:w-11
                                                 dark:bg-indigo-900/40 dark:text-indigo-300">
                                         📅
                                     </div>
@@ -262,7 +288,7 @@
                                 </div>
 
                                 <ul class="space-y-3">
-                                    @foreach($recommendation->suggested_schedule ?? [] as $schedule)
+                                    @foreach ($recommendation->suggested_schedule ?? [] as $schedule)
                                         <li
                                             class="rounded-2xl bg-blue-50 p-4 text-sm leading-6 text-blue-800 border border-blue-100
                                                                                    dark:bg-blue-900/20 dark:border-blue-900/50 dark:text-blue-200">
@@ -273,7 +299,8 @@
                             </div>
 
                             {{-- Tips --}}
-                            <div class="rounded-2xl border border-green-100 bg-green-50 p-5
+                            <div
+                                class="rounded-2xl border border-green-100 bg-green-50 p-5
                                                             dark:border-green-900/50 dark:bg-green-900/20">
                                 <div class="mb-2 flex items-center gap-2">
                                     <span class="text-lg">💡</span>
@@ -288,7 +315,8 @@
                                 </p>
                             </div>
                         @else
-                            <div class="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center
+                            <div
+                                class="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center
                                                     dark:border-gray-700 dark:bg-gray-800">
                                 <div class="mb-4 text-5xl">
                                     ✨
@@ -343,7 +371,8 @@
                             Informasi Tugas
                         </h3>
 
-                        <div class="rounded-2xl bg-indigo-50 p-4 border border-indigo-100
+                        <div
+                            class="rounded-2xl bg-indigo-50 p-4 border border-indigo-100
                                     dark:bg-indigo-900/20 dark:border-indigo-900/50">
                             <p class="text-xs font-medium text-indigo-600 mb-2 dark:text-indigo-300">
                                 Quick Update Status
@@ -412,13 +441,13 @@
                             </p>
                         </div>
 
-                        @if($task->histories->count() > 0)
+                        @if ($task->histories->count() > 0)
                             <p class="mb-4 text-xs app-subtitle">
                                 Menampilkan 4 aktivitas terbaru.
                             </p>
 
                             <div class="space-y-4">
-                                @foreach($task->histories->sortByDesc('created_at')->take(4) as $history)
+                                @foreach ($task->histories->sortByDesc('created_at')->take(4) as $history)
                                     @php
                                         $oldStatus = $history->old_status
                                             ? ucwords(str_replace('_', ' ', $history->old_status))
@@ -426,12 +455,15 @@
 
                                         $newStatus = ucwords(str_replace('_', ' ', $history->new_status));
 
-                                        $newStatusClass = $historyStatusClasses[$history->new_status] ?? 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300';
+                                        $newStatusClass =
+                                            $historyStatusClasses[$history->new_status] ??
+                                            'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300';
                                     @endphp
 
                                     <div class="relative rounded-2xl app-card-soft p-4">
                                         <div class="flex items-start gap-3">
-                                            <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700
+                                            <div
+                                                class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700
                                                                                 dark:bg-indigo-900/40 dark:text-indigo-300">
                                                 🔄
                                             </div>
@@ -452,18 +484,19 @@
                                                     </span>
                                                 </div>
 
-                                                @if($history->note)
+                                                @if ($history->note)
                                                     <p class="mt-2 text-sm app-text">
                                                         {{ $history->note }}
                                                     </p>
                                                 @endif
 
-                                                <div class="mt-3 flex flex-wrap items-center gap-2 text-xs app-subtitle">
+                                                <div
+                                                    class="mt-3 flex flex-wrap items-center gap-2 text-xs app-subtitle">
                                                     <span>
                                                         {{ $history->created_at->format('d M Y H:i') }}
                                                     </span>
 
-                                                    @if($history->user)
+                                                    @if ($history->user)
                                                         <span>•</span>
                                                         <span>
                                                             oleh {{ $history->user->name }}
@@ -476,7 +509,8 @@
                                 @endforeach
                             </div>
                         @else
-                            <div class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-6 text-center
+                            <div
+                                class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-6 text-center
                                                     dark:border-gray-700 dark:bg-gray-800">
                                 <div class="mb-2 text-3xl">
                                     🕘
@@ -494,7 +528,8 @@
                     </div>
 
                     {{-- Danger Zone --}}
-                    <div class="rounded-3xl p-6 shadow-sm border border-red-100 bg-white
+                    <div
+                        class="rounded-3xl p-6 shadow-sm border border-red-100 bg-white
                                 dark:bg-gray-900 dark:border-red-900/50">
                         <h3 class="text-lg font-bold text-red-700 dark:text-red-300">
                             Aksi Tugas
@@ -508,7 +543,8 @@
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="w-full rounded-2xl bg-red-100 px-5 py-3 text-sm font-semibold text-red-700 hover:bg-red-200 transition
+                            <button type="submit"
+                                class="w-full rounded-2xl bg-red-100 px-5 py-3 text-sm font-semibold text-red-700 hover:bg-red-200 transition
                                            dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50"
                                 onclick="return confirm('Yakin ingin menghapus tugas ini?')">
                                 Hapus Tugas

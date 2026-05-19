@@ -71,23 +71,65 @@ class AiRecommendationService
     {
         $subjectName = $task->subject?->name ?? 'Tidak diketahui';
 
+        $now = now(config('app.timezone'));
+
+        $deadline = $task->deadline->copy()->timezone(config('app.timezone'));
+
+        if ($deadline->lt($now)) {
+            $minutesRemaining = -1 * (int) $deadline->diffInMinutes($now);
+        } else {
+            $minutesRemaining = (int) $now->diffInMinutes($deadline);
+        }
+
+        $hoursRemaining = intdiv($minutesRemaining, 60);
+        $daysRemaining = intdiv($minutesRemaining, 1440);
+
+        if ($minutesRemaining < 0) {
+            $deadlineStatus = 'sudah melewati deadline';
+            $riskLevel = 'sangat tinggi';
+        } elseif ($minutesRemaining <= 1440) {
+            $deadlineStatus = 'deadline kurang dari 24 jam';
+            $riskLevel = 'tinggi';
+        } elseif ($minutesRemaining <= 4320) {
+            $deadlineStatus = 'deadline sangat dekat';
+            $riskLevel = 'tinggi';
+        } elseif ($minutesRemaining <= 10080) {
+            $deadlineStatus = 'deadline minggu ini';
+            $riskLevel = 'sedang';
+        } else {
+            $deadlineStatus = 'deadline masih cukup jauh';
+            $riskLevel = $task->priority_score >= 80 ? 'sedang' : 'rendah';
+        }
+
         return <<<PROMPT
-Kamu adalah asisten manajemen tugas akademik mahasiswa.
+Kamu adalah asisten manajemen tugas mahasiswa.
 
-Analisis tugas berikut:
+Gunakan data berikut sebagai FAKTA WAJIB. Jangan menebak ulang, jangan menghitung ulang tanggal, dan jangan bertentangan dengan data sistem.
 
-Nama tugas: {$task->title}
-Mata kuliah: {$subjectName}
-Deskripsi tugas: {$task->description}
-Deadline: {$task->deadline}
-Tingkat kesulitan: {$task->difficulty}
-Estimasi waktu pengerjaan: {$task->estimated_duration} jam
-Bobot nilai: {$task->task_weight}
-Status tugas: {$task->status}
-Skor prioritas sistem: {$task->priority_score}
-Level prioritas sistem: {$task->priority_level}
+Waktu saat ini: {$now->format('d M Y H:i')}
+Deadline tugas: {$deadline->format('d M Y H:i')}
+Sisa menit menuju deadline: {$minutesRemaining}
+Sisa jam menuju deadline: {$hoursRemaining}
+Sisa hari menuju deadline: {$daysRemaining}
+Status deadline dari sistem: {$deadlineStatus}
+Tingkat risiko dari sistem: {$riskLevel}
 
-Buat rekomendasi dalam format JSON valid saja, tanpa markdown, tanpa penjelasan tambahan.
+Data tugas:
+- Judul: {$task->title}
+- Mata kuliah: {$task->subject->name}
+- Deskripsi: {$task->description}
+- Tingkat kesulitan: {$task->difficulty}
+- Estimasi pengerjaan: {$task->estimated_duration} jam
+- Bobot nilai: {$task->task_weight}
+- Skor prioritas sistem: {$task->priority_score}
+- Level prioritas sistem: {$task->priority_level}
+
+Aturan penting:
+- Jika status deadline adalah 'sudah melewati deadline', jangan pernah mengatakan deadline masih jauh.
+- Jika deadline sudah lewat, jelaskan bahwa tugas perlu segera diselesaikan.
+- Tingkat risiko harus mengikuti tingkat risiko dari sistem.
+- Jangan mengubah fakta tanggal, deadline, skor, dan status deadline.
+- Jawaban harus dalam bahasa Indonesia.
 
 Format JSON wajib:
 {
@@ -105,11 +147,6 @@ Format JSON wajib:
   ],
   "time_management_tips": "tips singkat manajemen waktu"
 }
-
-Gunakan bahasa Indonesia yang jelas, praktis, dan cocok untuk mahasiswa.
-Jangan menyuruh mahasiswa menyontek.
-Jangan mengerjakan isi tugasnya secara penuh.
-Fokus hanya pada strategi pengerjaan, prioritas, dan manajemen waktu.
 PROMPT;
     }
 }
